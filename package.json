@@ -1,0 +1,15 @@
+{
+  "name": "generator-deploy",
+  "version": "0.0.1",
+  "description": "",
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "dependencies": {
+    "yeoman-generator": "^0.17.3"
+  },
+  "peerDependencies": {
+    "yo": ">=1.1.2",
+    "lodash": "^2.4.1"
+  }
+}
