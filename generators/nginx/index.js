@@ -4,7 +4,7 @@ var generators = require("yeoman-generator"),
 
 module.exports = generators.Base.extend({
     initializing: function() {
-        this.log("Initializing uWSGI configuration...");
+        this.log("Initializing NGINX configuration...");
         this.promptedAlready = !!this.options.promptAnswers;
         if (this.promptedAlready) {
             this.promptAnswers = this.options.promptAnswers;
@@ -13,7 +13,7 @@ module.exports = generators.Base.extend({
     prompting: function() {
         var done = this.async();
         if (!this.promptedAlready) {
-            var prompts = utils.reduce_prompts(["ssl", "domain", ]);
+            var prompts = utils.reduce_prompts(["emperor", "codebaseToWSGI", "codebase", "deploymentType", ]);
             this.prompt(
                 prompts,
                 function(answers){
@@ -27,11 +27,10 @@ module.exports = generators.Base.extend({
     },
     writing: function() {
         var ctx = {ctx: this.promptAnswers},
-            targ = this.promptAnswers.projectFolder + ".ini",
-            tpl = this.promptAnswers.emperor ? "_uwsgi_vassal.ini" : "_uwsgi_standalone.ini",
-            logMsg = this.promptAnswers.emperor ? "Writing uWSGI vassal app" : "Writing standalone uWSGI app";
+            targ = this.promptAnswers.projectFolder + ".conf",
+            tpl = "_nginx.conf";
 
-        this.log(logMsg);
+        this.log("Writing NGINX configuration file");
         this.template(tpl, targ, ctx);
     }
 });

@@ -20,5 +20,6 @@ module.exports = generators.Base.extend({
         };
 
         this.composeWith('deploy:uwsgi', args);
+        this.composeWith('deploy:nginx', args);
     }
 });

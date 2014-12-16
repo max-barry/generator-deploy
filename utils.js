@@ -1,4 +1,5 @@
 "use strict";
+var __ = require("lodash");
 
 function make_start_server_path(str) {
     return str.indexOf("/") == 0 ? str : "/" + str;
@@ -26,7 +27,6 @@ function must_be_wsgi_file(answer) {
     var resp = answer.length !== 0 ? true : "This value can not be empty";
     return answer.slice(answer.length - 3) == ".py" ? true : "Your answer did not end in .py. Please provide a path to the wsgi.py file.";
 }
-
 
 var prompts = [
     {
@@ -84,8 +84,28 @@ var prompts = [
             }
         }
     },
+    {
+        type: "confirm",
+        name: "ssl",
+        message: "Will this project run under SSL?",
+        default: false
+    },
+    {
+        type: "input",
+        name: "domain",
+        message: "The domain(s) this project will be deployed under. If multiple, write as a non-delimited string (e.g. www.mydomain.com mydomain.com sub.mydomain.com)",
+        validate: mandatory_input
+    },
 ];
+
+function reduce_prompts(to_remove) {
+    return __.reject(prompts, function(val) {
+        return to_remove.indexOf(val.name) !== -1;
+    });
+}
+
 
 module.exports = {
     prompts: prompts,
+    reduce_prompts: reduce_prompts
 };
