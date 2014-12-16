@@ -13,7 +13,7 @@ module.exports = generators.Base.extend({
     prompting: function() {
         var done = this.async();
         if (!this.promptedAlready) {
-            var prompts = utils.reduce_prompts(["ssl", "domain", ]);
+            var prompts = utils.reduce_prompts(["ssl", "domain", "documentation", "unixuser"]);
             this.prompt(
                 prompts,
                 function(answers){

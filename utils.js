@@ -96,6 +96,18 @@ var prompts = [
         message: "The domain(s) this project will be deployed under. If multiple, write as a non-delimited string (e.g. www.mydomain.com mydomain.com sub.mydomain.com)",
         validate: mandatory_input
     },
+    {
+        type: "confirm",
+        name: "documentation",
+        message: "Would you like to generate a deployment guide for your project?",
+        default: true
+    },
+    {
+        type: "input",
+        name: "unixuser",
+        message: "What is the name of the UNIX user your project will run under?",
+        default: "<username>"
+    },
 ];
 
 function reduce_prompts(to_remove) {

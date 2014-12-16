@@ -4,16 +4,16 @@ var generators = require("yeoman-generator"),
 
 module.exports = generators.Base.extend({
     initializing: function() {
-        this.log("Initializing NGINX configuration...");
+        this.log("Initializing documentation...");
         this.promptedAlready = !!this.options.promptAnswers;
         if (this.promptedAlready) {
             this.promptAnswers = this.options.promptAnswers;
         }
     },
     prompting: function() {
-        var done = this.async();
+        var done = this.async(),
+            prompts = utils.reduce_prompts(["codebaseToWSGI", "ssl" ]);
         if (!this.promptedAlready) {
-            var prompts = utils.reduce_prompts(["emperor", "codebaseToWSGI", "codebase", "deploymentType", "documentation", "unixuser"]);
             this.prompt(
                 prompts,
                 function(answers){
@@ -27,10 +27,10 @@ module.exports = generators.Base.extend({
     },
     writing: function() {
         var ctx = {ctx: this.promptAnswers},
-            targ = this.promptAnswers.projectFolder + ".conf",
-            tpl = "_nginx.conf";
+            targ = "README.md",
+            tpl = "_README.md";
 
-        this.log("Writing NGINX configuration file");
+        this.log("Writing documentation");
         this.template(tpl, targ, ctx);
     }
 });
