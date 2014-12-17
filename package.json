@@ -1,7 +1,17 @@
 {
   "name": "generator-deploy",
-  "version": "0.0.6",
+  "title": "Yeoman Deploy",
   "description": "A Yeoman generator for server configs, including uWSGI, NGINX, and Supervisor settings. Useful for Django deployments.",
+  "version": "0.0.6",
+  "author": "Max Barry",
+  "license": "MIT",
+  "homepage": "",
+  "main": "Gruntfile.js",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
   "keywords": [
     "yeoman-generator",
     "django",

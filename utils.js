@@ -60,7 +60,7 @@ var prompts = [
     {
         type: "list",
         name: "emperor",
-        message: "What structure will this project's uWSGI app live under",
+        message: "What structure will this project's uWSGI app live under?",
         choices: [
             {
                 name: "Standalone:\nThe uWSGI configuration will be independent of other projects,\nand will require its own Supervisor instance.",
