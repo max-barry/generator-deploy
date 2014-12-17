@@ -1,6 +1,6 @@
 {
   "name": "generator-deploy",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A Yeoman generator for server configs, including uWSGI, NGINX, and Supervisor settings. Useful for Django deployments.",
   "keywords": [
     "yeoman-generator",
