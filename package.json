@@ -1,9 +1,10 @@
 {
   "name": "generator-deploy",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.0.4",
+  "description": "A Yeoman generator for server configs, including uWSGI, NGINX, and Supervisor settings. Useful for Django deployments.",
   "keywords": [
     "yeoman-generator",
+    "django",
     "uwsgi",
     "nginx",
     "server",
@@ -13,7 +14,11 @@
   ],
   "dependencies": {
     "lodash": "^2.4.1",
-    "yeoman-generator": "^0.17.3"
+    "yeoman-generator": "^0.17.3",
+  },
+  "devDependencies": {
+    "grunt-bump": "0.0.16",
+    "grunt": "~0.4.5"
   },
   "peerDependencies": {
     "yo": ">=1.1.2"

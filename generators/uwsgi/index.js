@@ -26,6 +26,8 @@ module.exports = generators.Base.extend({
         }
     },
     writing: function() {
+
+
         var ctx = {ctx: this.promptAnswers},
             targ = this.promptAnswers.projectFolder + ".ini",
             tpl = this.promptAnswers.emperor ? "_uwsgi_vassal.ini" : "_uwsgi_standalone.ini",
@@ -33,5 +35,19 @@ module.exports = generators.Base.extend({
 
         this.log(logMsg);
         this.template(tpl, targ, ctx);
+
+        var args = {
+            options: {
+                uwsgiprefilled: true,
+                promptAnswers: this.promptAnswers
+            }
+        };
+
+        if (!this.promptAnswers.emperor) {
+            this.log("Creating a Supervisor configuration for the project's standalone uWSGI app");
+            this.composeWith('deploy:supervisor', args);
+        }
+
+
     }
 });

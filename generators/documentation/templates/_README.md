@@ -32,6 +32,7 @@ The target structure for this application is as followed:
 
         <%= ctx.projectLocation %><%= ctx.projectFolder %>/<%= ctx.codebase %>/src/
 
+  - Project code is stored in a GIT repository
 
 ---
 
@@ -69,8 +70,6 @@ The target structure for this application is as followed:
         export DJANGO_IS_DEBUG=<%= ctx.deploymentType.debug %>
         export DJANGO_IS_STAGING=<%= ctx.deploymentType.staging %>
 
-    TODO : SSH agent startup
-
 6. Make directories to house configurations and, optionally, static files:
 
         mkdir logs
@@ -91,6 +90,14 @@ The target structure for this application is as followed:
 8. The NGINX configuration must be symlinked to the global sites-enabled directory within NGINX *(n.b. the following needs to be run as root)*:
 
     `sudo ln -s <%= ctx.projectLocation %><%= ctx.projectFolder %>/config/nginx/<%= ctx.projectFolder %>.conf /etc/nginx/sites-enabled/`
+
+    Pre-touch the NGINX log files, and restart NGINX to activate the new site...
+
+    `touch <%= ctx.projectLocation %><%= ctx.projectFolder %>/logs/nginx/nginx.error.log`
+
+    `touch <%= ctx.projectLocation %><%= ctx.projectFolder %>/logs/nginx/nginx.access.log`
+    
+    `service nginx restart`
 <% if (ctx.emperor) { %>
 9. The uWSGI vassal must be symlinked to the application directory watched by the Emperor:
 
@@ -116,3 +123,8 @@ The target structure for this application is as followed:
 
     `sudo supervisorctl update`
 <% } %>
+10. GIT clone the project into `<%= ctx.projectLocation %><%= ctx.projectFolder %>`
+
+11. Install Python and frontend dependencies. Build the frontend component of the project after dependencies are installed.
+
+12. **(Optional)** Add a `robots.txt` to `config/nginx/staticfiles/`

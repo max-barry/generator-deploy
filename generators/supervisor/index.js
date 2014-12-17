@@ -4,7 +4,7 @@ var generators = require("yeoman-generator"),
 
 module.exports = generators.Base.extend({
     initializing: function() {
-        this.log("Initializing documentation...");
+        this.log("Initializing Supervisor configuration...");
         this.promptedAlready = !!this.options.promptAnswers;
         if (this.promptedAlready) {
             this.promptAnswers = this.options.promptAnswers;
@@ -12,7 +12,7 @@ module.exports = generators.Base.extend({
     },
     prompting: function() {
         var done = this.async(),
-            prompts = utils.reduce_prompts(["codebaseToWSGI", "ssl", "documentation", "domain" ]);
+            prompts = utils.reduce_prompts(["codebaseToWSGI", "ssl", "domain", "emperor", "deploymentType", "documentation"]);
         if (!this.promptedAlready) {
             this.prompt(
                 prompts,
@@ -26,11 +26,14 @@ module.exports = generators.Base.extend({
         }
     },
     writing: function() {
-        var ctx = {ctx: this.promptAnswers},
-            targ = "README.md",
-            tpl = "_README.md";
+        var ctx = {
+                ctx: this.promptAnswers,
+                uwsgiprefilled: !!this.options.uwsgiprefilled
+            },
+            targ = this.promptAnswers.projectFolder + ".supervisor.conf",
+            tpl = "_supervisor.conf";
 
-        this.log("Writing documentation");
+        this.log("Writing Supervisor configuration file");
         this.template(tpl, targ, ctx);
     }
 });

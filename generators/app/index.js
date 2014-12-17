@@ -8,7 +8,6 @@ module.exports = generators.Base.extend({
         this.prompt(
             utils.prompts,
             function(answers){
-                console.log(answers);
                 this.promptAnswers = answers;
                 done();
             }.bind(this)
@@ -21,5 +20,8 @@ module.exports = generators.Base.extend({
 
         this.composeWith('deploy:uwsgi', args);
         this.composeWith('deploy:nginx', args);
+        if (this.promptAnswers.documentation) {
+            this.composeWith('deploy:documentation', args);
+        }
     }
 });
