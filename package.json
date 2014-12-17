@@ -2,7 +2,7 @@
   "name": "generator-deploy",
   "title": "Yeoman Deploy",
   "description": "A Yeoman generator for server configs, including uWSGI, NGINX, and Supervisor settings. Useful for Django deployments.",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "author": "Max Barry",
   "license": "MIT",
   "homepage": "https://github.com/max-barry/generator-deploy",
