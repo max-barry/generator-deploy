@@ -5,12 +5,12 @@
   "version": "0.0.6",
   "author": "Max Barry",
   "license": "MIT",
-  "homepage": "",
+  "homepage": "https://github.com/max-barry/generator-deploy",
   "main": "Gruntfile.js",
   "readmeFilename": "README.md",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "git@github.com:max-barry/generator-deploy.git"
   },
   "keywords": [
     "yeoman-generator",
